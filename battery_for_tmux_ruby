@@ -1,23 +1,23 @@
 #!/Users/meriy100/.rbenv/shims/ruby
 shresult = `pmset -g ps`
 s = shresult.match /Now drawing from '(?<from>\w+ \w+)'/
-if s[:from] == "AC Power"
-  print "\e[32m"
-  print "⚡︎"
-end
-print "\e[0m"
+status = s[:from] == "AC Power" ? "⚡︎" : "❚"
 shresult.match /(\d+)%;/ do |m|
   case m[1].to_i
   when 0..30
-    print "\e[31m"
+    print "#[fg=colour196]"
+    print status * 1
   when 31..60
-    print "\e[33m"
+    print "#[fg=colour220]"
+    print status * 2
   when 61..99
-    print "\e[32m"
+    print "#[fg=colour46]"
+    print status * 3
   when 100
-    print "\e[34m"
+    print "#[fg=colour21]"
+    print status * 3
   end
   print "#{m[1]}%"
-  print "\e[34m"
+  print "#[default]"
 end
 
