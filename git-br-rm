@@ -1,4 +1,4 @@
-#!/Users/meriy100/.rbenv/shims/ruby
+#!/usr/bin/env ruby
 
 branch_names = (`git br`).split("\n").reject{ |branch_name| branch_name =~ /\*/ }
 if ARGV.first

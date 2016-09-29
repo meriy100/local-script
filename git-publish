@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+current_branch = `git rev-parse --abbrev-ref @`
+
+system("git push #{ARGV.join(" ")} origin #{current_branch}")
+
