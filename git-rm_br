@@ -1,0 +1,14 @@
+#!/Users/meriy100/.rbenv/shims/ruby
+
+branch_names = (`git br`).split("\n").reject{ |branch_name| branch_name =~ /\*/ }
+if ARGV.first
+  branch_names.reject! do |branch_name|
+    branch_name =~ /#{ARGV.first}/
+  end
+end
+
+branch_names.select!{ |branch_name| branch_name =~ /feature/ }
+
+branch_names.each do |branch_name|
+  system("git branch -d #{branch_name}")
+end
